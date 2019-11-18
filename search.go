@@ -43,7 +43,7 @@ func getSearchs(name string) Search {
 		json.Unmarshal(body, &search)
 
 		if (Search{}) == search {
-			colour.Red("Sorry the Search doesn't exist")
+			colour.Red("Could not find any result")
 			os.Exit(1)
 			return search
 		}

@@ -15,20 +15,23 @@ func main() {
 			argsearch 	:= strings.Join(args, " ")
 			searching 	:= strings.Replace(argsearch, ",", " & ", -1)
 			searches 	:= strings.Split(argsearch, ",")
-			cmd.Println(argsearch)
-			cmd.Printf("Searching for: %s\n", searching)
-			cmd.Println("")
-			for _, s := range searches {
-				result := getSearchs(s)
-				colour.Cyan(`Heading:	%s`, result.Heading)
-				colour.Blue(`AbstractURL:	%s`, result.AbstractURL)
-				colour.Green(`AbstractText:	%s`, result.AbstractText)
-				cmd.Println("")
+			if len(args)>0{
+				cmd.Printf("Searching for: %s\n", searching)
+				cmd.Println("")				
+				for _, s := range searches {
+					result := getSearchs(s)
+					colour.Cyan(`Heading:	%s`, result.Heading)
+					colour.Blue(`AbstractURL:	%s`, result.AbstractURL)
+					colour.Green(`AbstractText:	%s`, result.AbstractText)
+					cmd.Println("")
+				}
+			}else{
+				colour.Red("Search cannot be null")
+				os.Exit(1)				
 			}
 			return nil
 		},
 	}
-
 
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
