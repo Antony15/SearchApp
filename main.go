@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// Initialize Cobra CLI
 	cmd := &cobra.Command{
 		Use:          "SearchApp",
 		Short:        "CLI based search application",
@@ -15,11 +16,18 @@ func main() {
 			argsearch 	:= strings.Join(args, " ")
 			searching 	:= strings.Replace(argsearch, ",", " & ", -1)
 			searches 	:= strings.Split(argsearch, ",")
+			// If search not null
 			if len(args)>0{
 				cmd.Printf("Searching for: %s\n", searching)
-				cmd.Println("")				
+				cmd.Println("")	
+				
+				// Loop for multiple searches			
 				for _, s := range searches {
+					
+					// Get search results
 					result := getSearchs(s)
+					
+					// Use colour package to highlight
 					colour.Cyan(`Heading:	%s`, result.Heading)
 					colour.Blue(`AbstractURL:	%s`, result.AbstractURL)
 					colour.Green(`AbstractText:	%s`, result.AbstractText)
@@ -32,7 +40,8 @@ func main() {
 			return nil
 		},
 	}
-
+	
+	// Execute Cobra CLI
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
 	}
