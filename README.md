@@ -1,7 +1,7 @@
 # SearchApp
 CLI based search application in golang
 
-Git clone this respository to your local
+Git clone this respository to your local or run ```go get github.com/Antony15/SearchApp```
 
 Run command go install, Which will install a SearchApp.exe go binary in your $GOPATH/bin directory. Or use SearchApp.exe binary go file and save it in your $GOPATH/bin directory.
 
